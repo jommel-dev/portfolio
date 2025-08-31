@@ -50,7 +50,7 @@ export default defineConfig((ctx) => {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      publicPath: '/portfolio-pages/',
+      publicPath: '/portfolio/',
       // analyze: true,
       // env: {},
       // rawDefine: {}
