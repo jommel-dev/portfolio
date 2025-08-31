@@ -1,29 +1,39 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
     <q-drawer
+      class="q-pa-sm"
       v-model="leftDrawerOpen"
       show-if-above
-      bordered
     >
+      <q-card
+        flat
+        class="my-card bg-grey-4"
+        style="max-height: 50dvh;"
+      >
+        <q-img
+          src="/portfolio/images/fwdslogo.png"
+          alt="Profile"
+          style="width: 100%; height: 100%; border-radius: 10px;"
+          class="q-mr-sm"
+        />
+      </q-card>
+      <q-card
+        flat
+        class="my-card bg-grey-1 q-mt-sm"
+        style="max-height: 50dvh;"
+      >
+        <q-card-section class="text-center">
+          <q-img
+            src="/portfolio/images/profile.jpg"
+            alt="Profile"
+            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
+            class="q-mb-sm"
+          />
+          <div class="text-h6">Jommel F. Cabiles <q-icon name="verified" color="primary" /></div>
+          <div class="text-subtitle2">Owner/Web Developer</div>
+        </q-card-section>
+      </q-card>
+
       <q-list>
         <q-item-label
           header
@@ -51,47 +61,29 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
+    title: 'About',
+    caption: 'Information about business/team',
     icon: 'school',
-    link: 'https://quasar.dev'
+    link: 'about'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
+    title: 'Projects',
+    caption: 'Showcase of projects developed',
     icon: 'chat',
     link: 'https://chat.quasar.dev'
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
+    title: 'Contact Us',
+    caption: 'Get in touch with us',
     icon: 'record_voice_over',
     link: 'https://forum.quasar.dev'
   },
   {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
+    title: 'Ask for Quotation',
+    caption: 'Get in touch with us',
+    icon: 'record_voice_over',
+    link: 'https://forum.quasar.dev'
   },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
 ]
 
 export default defineComponent({
@@ -114,3 +106,11 @@ export default defineComponent({
   }
 })
 </script>
+
+
+<style scoped>
+.my-card{
+  border-radius: 15px;
+  /* box-shadow: 0px 0px 2px -1px !important; */
+}
+</style>
