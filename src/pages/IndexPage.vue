@@ -19,7 +19,7 @@
               text-color="white"
               icon="mdi-cog-outline"
             />
-            <div class="q-ml-md text-weight-bold">Services</div>
+            <div class="q-ml-md text-h6 text-weight-bold">Services</div>
             <q-space />
             <div class="q-ml-md text-caption">Offered Services by the Team</div>
           </q-card-section>
@@ -29,7 +29,7 @@
               :key="idx"
               class="col-3 col-xs-12 col-sm-4 col-md-3 q-pa-xs"
             >
-              <q-card
+             <q-card
                 flat
                 class="my-card-item"
                 :class="item.color"
@@ -44,6 +44,9 @@
                     />
                     <span class="q-ml-sm text-blue-grey-9" >{{item.title}}</span>
                   </div>
+
+                    <!-- <p>{{ item.subTitle }}</p>
+                    {{ item.description }} -->
                 </q-card-section>
               </q-card>
             </div>
@@ -64,7 +67,7 @@
               text-color="white"
               icon="mdi-information-variant-circle"
             />
-            <div class="q-ml-md text-weight-bold">Contact Information</div>
+            <div class="q-ml-md text-h6 text-weight-bold">Contact Information</div>
             <q-space />
             <q-icon name="mdi-linkedin" color="light-blue" size="md" />
             <q-icon name="mdi-facebook" color="blue-10" size="md" />
@@ -89,7 +92,7 @@
               text-color="white"
               icon="groups_3"
             />
-            <div class="q-ml-md text-weight-bold">My Professional Team</div>
+            <div class="q-ml-md text-h6 text-weight-bold">My Professional Team</div>
             <q-space />
             View All
           </div>
@@ -128,7 +131,7 @@
               text-color="white"
               icon="code"
             />
-            <div class="q-ml-md text-weight-bold">Skills</div>
+            <div class="q-ml-md text-h6 text-weight-bold">Skills</div>
             <q-space />
             <div class="q-ml-md text-caption">Professional Skills</div>
           </q-card-section>
@@ -152,6 +155,54 @@
                       :icon="item.icon"
                     />
                     <span class="q-ml-sm text-blue-grey-9" >{{item.title}}</span>
+                  </div>
+                </q-card-section>
+              </q-card>
+            </div>
+          </div>
+        </q-card>
+
+        <q-card
+          flat
+          class="my-card bg-grey-1 q-mt-sm overflow-auto"
+          style="max-height: 50dvh;"
+        >
+          <q-card-section class="row items-center no-wrap" style="z-index: 999999;">
+            <q-avatar
+              size="md"
+              color="black"
+              text-color="white"
+              icon="mdi-briefcase"
+            />
+            <div class="q-ml-md text-h6 text-weight-bold">Experience</div>
+            <q-space />
+            <div class="q-ml-md text-caption">Work experiences to the industries and corporate</div>
+          </q-card-section>
+          <div class="row q-pa-sm">
+            <div
+              v-for="(item, idx) in experience"
+              :key="idx"
+              class="col-3 col-xs-12 col-sm-4 col-md-6 q-pa-xs"
+            >
+              <q-card
+                flat
+                class="my-card-item"
+                :class="item.color"
+              >
+                <q-card-section>
+                  <div class="row items-center no-wrap">
+                    <q-avatar
+                      size="lg"
+                      :color="item.iconBg"
+                      text-color="black"
+                      :icon="item.icon"
+                    />
+                    <span class="q-ml-sm text-blue-grey-9" >
+                      <span class="text-bold">{{item.title}}</span><br />
+                      {{item.yearStarted}} - {{ item.status === 'current' ? 'Current' : item.yearEnded }}
+                    </span>
+                    <q-space />
+                    action
                   </div>
                 </q-card-section>
               </q-card>
@@ -288,12 +339,18 @@ export default {
             icon: 'mdi-web',
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
+            show: false,
+            subTitle: '',
+            description: '',
           },
           {
             title: 'Mobile App Development',
             icon: 'mdi-cellphone-link',
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
+            show: false,
+            subTitle: '',
+            description: '',
           },
           // {
           //   title: 'Robotics and Arduino',
@@ -306,12 +363,94 @@ export default {
             icon: 'mdi-calculator-variant',
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
+            show: false,
+            subTitle: '',
+            description: '',
           },
           {
             title: 'Digital Marketing Services',
             icon: 'mdi-handshake',
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
+            show: false,
+            subTitle: '',
+            description: '',
+          },
+        ],
+        experience: [
+          {
+            title: 'Accenture Inc. Philippines',
+            status: 'current',
+            yearStarted: 'Sept 2021',
+            yearEnded: '',
+            icon: 'mdi-greater-than',
+            color: 'bg-deep-purple-2',
+            iconBg: 'deep-purple-5',
+            show: false,
+            subTitle: 'Serving as a UI Developer on a team using the Vue.js and Quasar Framework, working in an Agile methodology environment.',
+            role: [
+              'Developed and maintained UI components, ensuring consistency and responsiveness across multiple enterprise applications.',
+              'Collaborated with the UX Team to transform design mockups into functional and user-friendly interfaces.',
+              'Built reusable and configurable components, reducing development time for future projects.',
+              'Integrated APIs for module processes to streamline system interoperability.',
+              'Led proof-of-concept (POC) efforts for module pods, validating feasibility before deployment.',
+              'Acted as Business Analyst for Access Management, optimizing workflows and automating processes.',
+              'Designed and created wireframes for new workflows, aligning with business needs.'
+            ],
+            projects: 'ASTD (Analytical Studio), Intient Patient, Intient Unify, Access Management',
+          },
+          {
+            title: 'Telcom Live Content Inc.',
+            status: 'past',
+            yearStarted: 'Jan 2019',
+            yearEnded: 'July 2021',
+            icon: 'mdi-alpha-t-box-outline',
+            color: 'bg-amber-2',
+            iconBg: 'amber-5',
+            show: false,
+            subTitle: 'Worked as a Frontend Developer specializing in PHP CodeIgniter, Nuxt.js, and Vue.js, with additional roles in graphic design and task management.',
+            role: [
+              'Designed and developed responsive front-end modules with modern frameworks',
+              'Utilized Git/Bitbucket for version control and JIRA/Trello for Agile project management.',
+              'Provided client data support with MySQL, including database queries and troubleshooting.',
+              'Designed UI elements with Adobe Photoshop to enhance user experience.',
+              'Gained exposure to cloud instances for deployment and system hosting.'
+            ],
+            projects: 'PayLoro (Merchant/Admin/Dashboard), PCIMS (Product Certification Information Management System), IA Permits & Clearances Portal, IA SSO Frontend, UPCDD BMD Portal, IA Ticketing',
+          },
+          {
+            title: 'IFormat Logic',
+            status: 'past',
+            yearStarted: 'Nov 2017',
+            yearEnded: 'Jan 2019',
+            icon: 'mdi-alpha-f-box',
+            color: 'bg-cyan-2',
+            iconBg: 'cyan-5',
+            show: false,
+            subTitle: 'Worked on WordPress, Magento, and CodeIgniter projects with both front-end and back-end responsibilities.',
+            role: [
+              'Maintained and updated client websites, ensuring quality and timely delivery.',
+              'Designed banners, icons, and digital assets to support client branding.',
+              'Customized and extended features on CMS-based platforms.',
+            ],
+            projects: 'WordPress Sites, Magento Sites, CodeIgniter Projects',
+          },
+          {
+            title: 'Easysoft Software Solutions',
+            status: 'past',
+            yearStarted: 'Nov 2017',
+            yearEnded: 'Jan 2019',
+            icon: 'mdi-alpha-e-box',
+            color: 'bg-blue-2',
+            iconBg: 'blue-5',
+            show: false,
+            subTitle: 'Worked on WordPress, Magento, and CodeIgniter projects with both front-end and back-end responsibilities.',
+            role: [
+              'Maintained and updated client websites, ensuring quality and timely delivery.',
+              'Designed banners, icons, and digital assets to support client branding.',
+              'Customized and extended features on CMS-based platforms.',
+            ],
+            projects: 'WordPress Sites, Magento Sites, CodeIgniter Projects',
           },
         ]
       }
