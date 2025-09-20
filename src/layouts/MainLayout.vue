@@ -33,12 +33,13 @@
           <div class="text-subtitle2">Owner/Web Developer</div>
         </q-card-section>
       </q-card>
-      <q-btn class="q-mt-sm full-width" rounded label="Start a Project" icon="mdi-rocket-launch" color="primary"></q-btn>
+      <q-btn class="q-mt-sm full-width" rounded label="Schedule a Meeting" icon="mdi-rocket-launch" no-caps color="primary"></q-btn>
       <q-list>
         <q-item-label
+          class="text-bold"
           header
         >
-          Essential Links
+          Informative Links
         </q-item-label>
 
         <EssentialLink
@@ -70,20 +71,20 @@ const linksList = [
     title: 'Projects',
     caption: 'Showcase of projects developed',
     icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    link: 'projects'
   },
-  {
-    title: 'Contact Us',
-    caption: 'Get in touch with us',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Ask for Quotation',
-    caption: 'Get in touch with us',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
+  // {
+  //   title: 'Contact Us',
+  //   caption: 'Get in touch with us',
+  //   icon: 'record_voice_over',
+  //   link: 'https://forum.quasar.dev'
+  // },
+  // {
+  //   title: 'Ask for Quotation',
+  //   caption: 'Get in touch with us',
+  //   icon: 'record_voice_over',
+  //   link: 'https://forum.quasar.dev'
+  // },
 ]
 
 export default defineComponent({

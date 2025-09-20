@@ -12,7 +12,7 @@
           class="my-card bg-grey-1 overflow-auto"
           style="max-height: 50dvh;"
         >
-          <q-card-section class="row items-center no-wrap" style="z-index: 999999;">
+          <q-card-section class="row items-center no-wrap">
             <q-avatar
               size="md"
               color="black"
@@ -31,8 +31,9 @@
             >
              <q-card
                 flat
-                class="my-card-item"
+                class="my-card-item cursor-pointer"
                 :class="item.color"
+                @click="showServiceDesc(item)"
               >
                 <q-card-section>
                   <div class="row items-center no-wrap">
@@ -43,12 +44,26 @@
                       :icon="item.icon"
                     />
                     <span class="q-ml-sm text-blue-grey-9" >{{item.title}}</span>
+                    <q-space />
+                    <!-- <q-icon
+                      @click="showServiceDesc(item)"
+                      :name="showService ? 'mdi-eye-off' : 'mdi-eye'"
+                      :color="showService ? 'negative' : 'primary'"
+                      size="sm"
+                    /> -->
                   </div>
-
-                    <!-- <p>{{ item.subTitle }}</p>
-                    {{ item.description }} -->
                 </q-card-section>
               </q-card>
+            </div>
+            <div v-if="showService" class="col-12">
+              <q-banner inline-actions rounded class="bg-light-blue-4 text-white">
+                <p>{{ serviceDetails.subTitle }}</p>
+                {{ serviceDetails.description }}
+
+                <template v-slot:action>
+                  <q-btn flat round icon="close" @click="showService = !showService" />
+                </template>
+              </q-banner>
             </div>
           </div>
         </q-card>
@@ -69,8 +84,22 @@
             />
             <div class="q-ml-md text-h6 text-weight-bold">Contact Information</div>
             <q-space />
-            <q-icon name="mdi-linkedin" color="light-blue" size="md" />
-            <q-icon name="mdi-facebook" color="blue-10" size="md" />
+            <q-btn
+              flat
+              icon="mdi-linkedin"
+              color="primary"
+              type="a"
+              :href="'https://www.linkedin.com/in/cabiles-jommel-38741b207/'"
+              target="_blank"
+            />
+            <q-btn
+              flat
+              icon="mdi-facebook"
+              color="blue-10"
+              type="a"
+              :href="'https://www.facebook.com/jommel.f.cabiles'"
+              target="_blank"
+            />
           </div>
 
           <q-card-section>
@@ -101,7 +130,8 @@
             <q-item v-for="contact in teamList" :key="contact.id" class="q-mb-sm" clickable v-ripple>
               <q-item-section avatar>
                 <q-avatar>
-                  <q-icon name="mdi-account-circle" size="xl"/>
+                  <q-img :src="contact.profile" />
+                  <!-- <q-icon name="mdi-account-circle" size="xl"/> -->
                 </q-avatar>
               </q-item-section>
 
@@ -124,7 +154,7 @@
           class="my-card bg-grey-1 overflow-auto"
           style="max-height: 50dvh;"
         >
-          <q-card-section class="row items-center no-wrap" style="z-index: 999999;">
+          <q-card-section class="row items-center no-wrap">
             <q-avatar
               size="md"
               color="black"
@@ -167,7 +197,7 @@
           class="my-card bg-grey-1 q-mt-sm overflow-auto"
           style="max-height: 50dvh;"
         >
-          <q-card-section class="row items-center no-wrap" style="z-index: 999999;">
+          <q-card-section class="row items-center no-wrap">
             <q-avatar
               size="md"
               color="black"
@@ -202,7 +232,14 @@
                       {{item.yearStarted}} - {{ item.status === 'current' ? 'Current' : item.yearEnded }}
                     </span>
                     <q-space />
-                    action
+                    <q-btn
+                      flat
+                      color="primary"
+                      type="a"
+                      label="Details"
+                      no-caps
+                      @click="showExpDetails(item)"
+                    />
                   </div>
                 </q-card-section>
               </q-card>
@@ -211,6 +248,53 @@
         </q-card>
       </div>
     </div>
+
+    <q-drawer
+      side="right"
+      v-model="detailsExperience"
+      bordered
+      overlay
+      :width="900"
+    >
+      <q-card
+        flat
+        class=" bg-white"
+      >
+        <q-card-section class="row items-center no-wrap" style="z-index: 999999;">
+          <div>
+            <div class="text-h5 text-weight-bold">Experience Details in <span :class="`text-${expDetails.iconBg}`">{{ expDetails.title }}</span></div><br />
+            {{ expDetails.subTitle }}
+          </div>
+          <q-space />
+
+          <q-btn size="sm" round color="red" icon="close" @click="detailsExperience = !detailsExperience" />
+        </q-card-section>
+        <q-separator />
+        <q-card-section>
+          <div>
+            <div class="text-h6 ">
+              Projects:
+              <q-chip v-for="(proj) in expDetails.projects" :key="proj" outline color="primary" text-color="white" icon="apps">
+                {{ proj }}
+              </q-chip>
+            </div>
+          </div>
+          <br/>
+          <div>
+            <div class="text-h6 ">Role and Responsibilities: </div>
+             <q-list>
+              <q-item v-for="(r, indx) in expDetails.role" :key="indx">
+                <q-item-section>
+                  <q-item-label><q-icon name="rebase_edit" size="sm" color="primary" /> {{ r }}</q-item-label>
+                </q-item-section>
+
+
+              </q-item>
+            </q-list>
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-drawer>
   </div>
 </template>
 
@@ -219,6 +303,10 @@ export default {
   name: 'IndexPage',
   data(){
       return {
+        detailsExperience: false,
+        showService: false,
+        serviceDetails: {},
+        expDetails: {},
         dashCards: [
           {
             title: 'Javascript',
@@ -284,31 +372,31 @@ export default {
 
         teamList: [
           {
-            profile: '',
+            profile: '/portfolio/images/adrian.jpg',
             name: 'Adrian Guillermo',
             contact: '09260696155',
-            email: 'test@email.com',
+            email: 'adrianguillermo@gmail.com',
             position: 'Senior Sofware Engineer'
           },
           {
-            profile: '',
+            profile: '/portfolio/images/gerald.jpg',
             name: 'Gerald Hope Ecaruan',
             contact: '',
-            email: 'test@email.com',
+            email: 'ghemzler.dev@gmail.com',
             position: 'Wordpress Developer'
           },
           {
-            profile: '',
+            profile: '/portfolio/images/louie.jpg',
             name: 'Ernest Alferez',
             contact: '',
-            email: 'test@email.com',
-            position: 'Robotics Engineer'
+            email: 'louieflores16@gmail.com ',
+            position: 'louieflores16@gmail.com '
           },
           {
-            profile: '',
+            profile: '/portfolio/images/ronald.png',
             name: 'Ronald Fernando',
             contact: '',
-            email: 'test@email.com',
+            email: 'ronaldfernando.dev@gmail.com',
             position: 'Software Engineer'
           },
           // {
@@ -340,8 +428,8 @@ export default {
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
             show: false,
-            subTitle: '',
-            description: '',
+            subTitle: 'Wordpress, Web Base System',
+            description: 'We craft stunning, user-friendly websites that don’t just look good—they perform. From business portfolios to e-commerce stores, we design responsive, SEO-ready, and scalable solutions that help you stand out online.',
           },
           {
             title: 'Mobile App Development',
@@ -349,8 +437,8 @@ export default {
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
             show: false,
-            subTitle: '',
-            description: '',
+            subTitle: 'Mobile Application for Web Apps',
+            description: 'ransform your ideas into powerful mobile apps. Our team builds fast, secure, and engaging applications for Android and iOS that provide seamless user experiences and help your business stay connected with customers on the go.',
           },
           // {
           //   title: 'Robotics and Arduino',
@@ -364,8 +452,8 @@ export default {
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
             show: false,
-            subTitle: '',
-            description: '',
+            subTitle: 'Information Systems, Inventory, Accounting, etc.',
+            description: 'Simplify your operations with custom-built systems that automate processes, track data, and provide actionable insights. From inventory to accounting, we deliver reliable solutions tailored to your business needs.',
           },
           {
             title: 'Digital Marketing Services',
@@ -373,8 +461,8 @@ export default {
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
             show: false,
-            subTitle: '',
-            description: '',
+            subTitle: 'Promotional, SEO, etc.',
+            description: 'Grow your brand and reach the right audience with data-driven strategies. From social media management to SEO and online advertising, we create campaigns that increase visibility, drive traffic, and boost conversions.',
           },
         ],
         experience: [
@@ -450,11 +538,22 @@ export default {
               'Designed banners, icons, and digital assets to support client branding.',
               'Customized and extended features on CMS-based platforms.',
             ],
-            projects: 'WordPress Sites, Magento Sites, CodeIgniter Projects',
+            projects: 'EasyResto, EasyLoan',
           },
         ]
       }
   },
+  methods:{
+    showServiceDesc(item){
+      this.showService = true;
+      this.serviceDetails = item
+    },
+    showExpDetails(item){
+      this.detailsExperience = true;
+      item.projects = item.projects.split(', ')
+      this.expDetails = item
+    }
+  }
 }
 </script>
 <style scoped>

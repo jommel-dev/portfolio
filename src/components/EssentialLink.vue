@@ -4,7 +4,7 @@
       <q-item
         clickable
         tag="a"
-        active-class="text-light-blue-6 text-bold"
+        active-class="text-orange-10 text-bold"
         :to="{name: link}"
       >
         <q-item-section
