@@ -123,7 +123,12 @@
             />
             <div class="q-ml-md text-h6 text-weight-bold">My Professional Team</div>
             <q-space />
-            View All
+            <q-btn
+              flat
+              label="View All"
+              no-caps
+              to="myteam"
+            />
           </div>
 
           <q-list >
@@ -389,15 +394,15 @@ export default {
             profile: '/portfolio/images/louie.jpg',
             name: 'Ernest Alferez',
             contact: '',
-            email: 'louieflores16@gmail.com ',
-            position: 'louieflores16@gmail.com '
+            email: 'louieflores16@gmail.com',
+            position: 'Digital Marketing'
           },
           {
             profile: '/portfolio/images/ronald.png',
             name: 'Ronald Fernando',
             contact: '',
             email: 'ronaldfernando.dev@gmail.com',
-            position: 'Software Engineer'
+            position: 'Shopify Developer'
           },
           // {
           //   profile: '',
@@ -423,12 +428,12 @@ export default {
         ],
         services: [
           {
-            title: 'Wordpress & Web Development',
+            title: 'E-Commerce & Web Development',
             icon: 'mdi-web',
             color: 'bg-light-blue-2',
             iconBg: 'blue-5',
             show: false,
-            subTitle: 'Wordpress, Web Base System',
+            subTitle: 'Shofipy, Wordpress, Web Base Application',
             description: 'We craft stunning, user-friendly websites that don’t just look good—they perform. From business portfolios to e-commerce stores, we design responsive, SEO-ready, and scalable solutions that help you stand out online.',
           },
           {
@@ -440,12 +445,6 @@ export default {
             subTitle: 'Mobile Application for Web Apps',
             description: 'ransform your ideas into powerful mobile apps. Our team builds fast, secure, and engaging applications for Android and iOS that provide seamless user experiences and help your business stay connected with customers on the go.',
           },
-          // {
-          //   title: 'Robotics and Arduino',
-          //   icon: 'mdi-language-javascript',
-          //   color: 'bg-yellow-2',
-          //   iconBg: 'yellow-5',
-          // },
           {
             title: 'Information & Accounting Systems',
             icon: 'mdi-calculator-variant',

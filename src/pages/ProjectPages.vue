@@ -126,7 +126,7 @@ export default {
       serviceDetails: {},
       projects: [
         {
-          banner: '/portfolio/images/dashboard.jpg',
+          banner: '/portfolio/images/psmis.png',
           title: "Pawnshop Management Information System",
           abbr: "PSMIS",
           description: "Manages pawnshop operations including customer loans, ticket generation, auction item listing, and transaction report exports.",
@@ -143,7 +143,7 @@ export default {
           developer: ["Jommel Cabiles"]
         },
         {
-          banner: '/portfolio/images/dashboard.jpg',
+          banner: '/portfolio/images/mlis.jpg',
           title: "Molecular Laboratory Information System",
           abbr: "MLIS",
           description: "Handles molecular lab processes such as recording patient RT-PCR and Antigen results, report printing.",
@@ -160,7 +160,7 @@ export default {
           developer: ["Jommel Cabiles", "Erwin Joseph Tantoco"]
         },
         {
-          banner: '/portfolio/images/dashboard.jpg',
+          banner: '/portfolio/images/mlis.jpg',
           title: "Surgical Pathology Consultation Report System",
           abbr: "SPCRIS",
           description: "Extension of MLIS designed for pathology reporting, generating specialized surgical pathology consultation reports.",
@@ -191,7 +191,7 @@ export default {
           developer: ["Jommel Cabiles"]
         },
         {
-          banner: '/portfolio/images/dashboard.jpg',
+          banner: '/portfolio/images/grammar-app.png',
           title: "Grammar App (AI-Powered)",
           abbr: "GrammarApp",
           description: "AI-powered application that generates grammar corrections and restructures user content in real-time.",
